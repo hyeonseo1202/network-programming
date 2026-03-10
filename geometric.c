@@ -10,7 +10,6 @@ typedef double real;
 #define A 16807L
 #define M 2147483647L
 
-
 static long In[16] = {0L,
     1973272912L, 747177549L,  20464843L,  640830765L, 1098742207L,
       78126602L,  84743774L, 831312807L,  124667236L, 1172177002L,
@@ -49,37 +48,22 @@ real ranf()
 }
 #endif
 
-/**
- * 가위바위보를 백만번 했을 때
- * 이기는 확률, 지는 확률, 비기는 확률을 각각 출력
- */
+int geometric(real p)
+{
+    return (int)(log(1.0 - ranf()) / log(1.0 - p)) + 1;
+}
+
 
 int main()
 {
-    int win = 0;
-    int lose = 0;
-    int draw = 0;
-   long trials = 10000000;
+    int i;
 
-    for (long i = 0; i < trials; i++) {
-        real r = ranf();
 
-        if (r < 1.0/3.0) {
-            lose++;
-        }
-        else if (r < 2.0/3.0) {
-            win++;
-        }
-        else {
-            draw++;
-        }
+    printf("\n<p=0.1 geometric>\n");
+    for (i = 0; i < 10; i++) {
+        printf("%d ", geometric(0.1));
     }
-
-    printf("총 시행 횟수: %ld\n\n", trials);
-
-    printf("진 것 확률  : %.6f\n", (double)lose / trials);
-    printf("이긴 것 확률: %.6f\n", (double)win / trials);
-    printf("비긴 것 확률: %.6f\n", (double)draw / trials);
+    printf("\n");
 
     return 0;
 }

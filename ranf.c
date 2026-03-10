@@ -48,12 +48,9 @@ real ranf()
 }
 #endif
 
-
-
 int main()
 {
     int i;
-    
 
     for (i = 0; i < 9; i++) {
         printf("%.6f\n", ranf());
