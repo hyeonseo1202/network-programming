@@ -100,7 +100,7 @@ int main()
                 t2 = time + geometric(Ps);
             }
         }
-        else { //(t2 > t1) 도착보다 서비스 완료가 먼저! 
+        else { //(t2 > t1) 도착보다 서비스 완료가 먼저! -> 현재 서비스 끝
             /* completion event */
             time = t2;
 
@@ -110,14 +110,14 @@ int main()
             front++;
             n--;
 
-            if (n > 0) { //손님이 존재하면 바로 시작
+            if (n > 0) { //다음 손님이 존재하면 바로 시작
                 current_customer = queue[front];
                 printf("at time %d, customer %d begin\n", time, current_customer);
-                t2 = time + geometric(Ps);
+                t2 = time + geometric(Ps); // 서비스 종료 시간 새로 제작
             }
-            else { //손님이 없으면 종료?
+            else { //더이상 고객이 없음
                 current_customer = -1;
-                t2 = Te;
+                t2 = Te; //서비스 종료시간을  max시간으로 만들어서 다음 t1,t2비교에서 무조건 t1이 작도록 만듦
             }
         }
     }
